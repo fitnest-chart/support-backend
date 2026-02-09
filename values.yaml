@@ -13,6 +13,10 @@ istio:
   host: "support-service"
   mtls:
     mode: STRICT
+  authorization:
+    internalCallers:
+      - "cluster.local/ns/fitnest-dev/sa/user-service"
+      - "cluster.local/ns/fitnest-dev/sa/iam-service"
 env:
   SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql-support:5432/fitnest_support"
   SPRING_DATASOURCE_USERNAME: "fitnest_support"
