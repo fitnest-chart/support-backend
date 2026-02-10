@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/fitnest-backend/support-service
-  tag: "development-06b4279"
+  tag: "development-f790c79"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
@@ -32,7 +32,6 @@ env:
   IDENTITY_SERVICE_URL: "http://identity-service:8080"
   USER_SERVICE_URL: "http://user-service:8080"
   MEDIA_SERVICE_URL: "http://media-service:8086"
-
 livenessProbe:
   httpGet:
     path: /actuator/health
