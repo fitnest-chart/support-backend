@@ -27,6 +27,7 @@ hpa:
   memoryUtilization: "450Mi"
 env:
   SPRING_PROFILES_ACTIVE: "dev"
+  SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
   SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql-support:5432/fitnest_support"
   SPRING_DATASOURCE_USERNAME: "fitnest_support"
   SPRING_DATASOURCE_PASSWORD: "support_password_123"
