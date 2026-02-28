@@ -18,13 +18,19 @@ istio:
     internalCallers:
       - "cluster.local/ns/fitnest-dev/sa/user-service"
       - "cluster.local/ns/fitnest-dev/sa/identity-service"
+      - "cluster.local/ns/fitnest-dev/sa/payment-service"
+      - "cluster.local/ns/fitnest-dev/sa/catalog-service"
+      - "cluster.local/ns/fitnest-dev/sa/order-service"
+      - "cluster.local/ns/fitnest-dev/sa/notifications-service"
+      - "cluster.local/ns/fitnest-dev/sa/media-service"
+      - "cluster.local/ns/fitnest-dev/sa/fitness-plan-service"
       - "cluster.local/ns/fitnest-dev/sa/api-gateway"
 hpa:
   enabled: false
   minReplicas: "1"
   maxReplicas: "3"
   cpuUtilization: "90"
-  memoryUtilization: "450Mi"
+  memoryUtilization: "600Mi"
 env:
   SPRING_PROFILES_ACTIVE: "dev"
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
@@ -40,11 +46,11 @@ env:
   JWT_ISSUER: "fitnest"
   IDENTITY_SERVICE_URL: "http://identity-service:8080"
   USER_SERVICE_URL: "http://user-service:8080"
-  JAVA_OPTS: "-Xmx384m -Xms192m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xss256k"
+  JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=70 -XX:InitialRAMPercentage=50 -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xss256k -XX:+ExitOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof"
 resources:
   limits:
-    memory: 512Mi
-    cpu: 500m
+    memory: 1Gi
+    cpu: 1000m
   requests:
-    cpu: 250m
-    memory: 256Mi
+    cpu: 500m
+    memory: 512Mi
