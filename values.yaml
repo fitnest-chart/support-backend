@@ -49,7 +49,7 @@ env:
   JAVA_TOOL_OPTIONS: "-Xms256m -Xmx400m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+ParallelRefProcEnabled -XX:MaxMetaspaceSize=128m -Xss512k -XX:+ExitOnOutOfMemoryError"
 resources:
   requests:
-    cpu: 200m
+    cpu: 150m
     memory: 450Mi
   limits:
     cpu: 500m
