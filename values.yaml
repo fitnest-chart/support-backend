@@ -46,11 +46,20 @@ env:
   JWT_ISSUER: "fitnest"
   IDENTITY_SERVICE_URL: "http://identity-service:8080"
   USER_SERVICE_URL: "http://user-service:8080"
-  JAVA_TOOL_OPTIONS: "-Xms256m -Xmx400m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+ParallelRefProcEnabled -XX:MaxMetaspaceSize=128m -Xss512k -XX:+ExitOnOutOfMemoryError"
+  JAVA_TOOL_OPTIONS: >
+    -Xms256m
+    -Xmx512m
+    -XX:+UseG1GC
+    -XX:MaxGCPauseMillis=200
+    -XX:+ParallelRefProcEnabled
+    -XX:MaxMetaspaceSize=160m
+    -XX:+AlwaysPreTouch
+    -Xss512k
+    -XX:+ExitOnOutOfMemoryError
 resources:
   requests:
-    cpu: 250m
-    memory: 600Mi
+    cpu: 200m
+    memory: 512Mi
   limits:
-    cpu: 600m
+    cpu: 1000m
     memory: 1Gi
