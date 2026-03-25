@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/fitnest-backend/support-service
-  tag: "development-7003b76"
+  tag: "development-4cc29f1"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
@@ -15,8 +15,8 @@ istio:
   mtls:
     mode: STRICT
   authorization:
-      internalCallers:
-        - "cluster.local/ns/fitnest-dev/sa/api-gateway"
+    internalCallers:
+      - "cluster.local/ns/fitnest-dev/sa/api-gateway"
 hpa:
   enabled: false
   minReplicas: "1"
