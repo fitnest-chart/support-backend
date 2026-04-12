@@ -14,7 +14,7 @@ service:
 networkPolicy:
   enabled: true
   allowedServices: []
-  # api-gateway is already hardcoded in the policy template
+  # gateway-backend is already hardcoded in the policy template
   # Add any other services that need direct access (if any)
 hpa:
   enabled: false
