@@ -1,45 +1,47 @@
 replicaCount: 1
+
 image:
   repository: ghcr.io/fitnest-backend/support-service
   tag: "development-c58b2a2"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
+
 service:
   type: ClusterIP
   port: 8080
   grpcPort: 9090
-istio:
+
+networkPolicy:
   enabled: true
-  host: "support-service"
-  mtls:
-    mode: STRICT
-  authorization:
-    internalCallers:
-      - "cluster.local/ns/fitnest-dev/sa/api-gateway"
+  allowedServices:
+    # api-gateway is already hardcoded in the policy template
+    # Add any other services that need direct access (if any)
+    []
+
 hpa:
   enabled: false
   minReplicas: "1"
   maxReplicas: "3"
   cpuUtilization: "90"
   memoryUtilization: "600Mi"
+
 env:
   SPRING_PROFILES_ACTIVE: "dev"
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql-shared:5432/fitnest_support"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://10.0.0.4:5432/fitnest_support?sslmode=disable"
   SPRING_DATASOURCE_USERNAME: "postgres"
   SPRING_DATASOURCE_PASSWORD: "shared_password_root_123"
   SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
-  SPRING_DATA_REDIS_HOST: "redis"
-  SPRING_DATA_REDIS_PORT: "6379"
-  SPRING_DATA_REDIS_PASSWORD: ""
-  KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+  SPRING_DATA_REDIS_HOST: "10.0.0.4"
+  SPRING_DATA_REDIS_PORT: "6380"
+  SPRING_DATA_REDIS_PASSWORD: "ChangeMeDevRedis!"
+  KAFKA_BOOTSTRAP_SERVERS: "10.0.0.4:9092"
   JWT_SECRET: "your-jwt-secret-change-in-production"
   JWT_ISSUER: "fitnest"
   IDENTITY_SERVICE_URL: "http://identity-service:8080"
   USER_SERVICE_URL: "http://user-service:8080"
   STORAGE_SERVICE_URL: "http://storage-service:8080"
-  # Optional: enable gRPC-based storage client instead of HTTP. When true, set STORAGE_GRPC_ADDRESS.
   USE_GRPC_STORAGE: "false"
   STORAGE_GRPC_ADDRESS: "dns:///storage-service.fitnest-dev.svc.cluster.local:9090"
   JAVA_TOOL_OPTIONS: >
