@@ -1,3 +1,4 @@
+vaultEnv: dev
 # values.yaml for support-backend
 
 replicaCount: 1
@@ -27,13 +28,10 @@ env:
   SPRINGDOC_SERVER_URL: "https://dev-api.fitnest.az"
   SPRING_DATASOURCE_URL: "jdbc:postgresql://10.0.0.4:5432/fitnest_support?sslmode=disable"
   SPRING_DATASOURCE_USERNAME: "postgres"
-  SPRING_DATASOURCE_PASSWORD: "shared_password_root_123"
   SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
   SPRING_DATA_REDIS_HOST: "10.0.0.4"
   SPRING_DATA_REDIS_PORT: "6380"
-  SPRING_DATA_REDIS_PASSWORD: "ChangeMeDevRedis!"
   KAFKA_BOOTSTRAP_SERVERS: "10.0.0.4:9092"
-  JWT_SECRET: "your-jwt-secret-change-in-production"
   JWT_ISSUER: "fitnest"
   IDENTITY_BACKEND_URL: "http://identity-backend:8080"
   USER_BACKEND_URL: "http://user-backend:8080"
