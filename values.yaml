@@ -6,10 +6,10 @@ hpa:
   minReplicas: '1'
 image:
   imagePullSecrets:
-  - name: ghcr-secret
+    - name: ghcr-secret
   pullPolicy: IfNotPresent
   repository: ghcr.io/fitnest-code/support-backend
-  tag: development-8c4f9fe
+  tag: production-8c4f9fe
 networkPolicy:
   allowedServices: []
   enabled: true
