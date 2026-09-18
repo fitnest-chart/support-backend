@@ -9,7 +9,7 @@ image:
     - name: ghcr-secret
   pullPolicy: IfNotPresent
   repository: ghcr.io/fitnest-code/support-backend
-  tag: development-2a60269
+  tag: development-58bc24f
 networkPolicy:
   allowedServices: []
   enabled: true
